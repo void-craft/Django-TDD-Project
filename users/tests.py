@@ -1,14 +1,18 @@
 from django.test import TestCase
 from .models import CustomUser
 
-# Create your tests here.
 class UserModelTest(TestCase):
 
-    def setUp(self):
-        self.name = 'test'
-        self.email = 'test@example.com'
-        self.password = 'test1234'
-        self.user = CustomUser.objects.create(name=self.name, email=self.email, password=self.password)
+    @classmethod
+    def setUpTestData(cls):
+        cls.name = 'test'
+        cls.email = 'test@example.com'
+        cls.password = 'test1234'
+        cls.user = CustomUser.objects.create(
+            name=cls.name,
+            email=cls.email,
+            password=cls.password
+        )
 
     def test_user_creation(self):
         self.assertEqual(self.user.name, self.name)
